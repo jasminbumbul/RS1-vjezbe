@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RS1_vjezbe.EF;
 using RS1_vjezbe.EntityModels;
+using RS1_vjezbe.Models;
 
 namespace RS1_vjezbe.Controllers
 {
@@ -95,12 +96,16 @@ namespace RS1_vjezbe.Controllers
             //    }
             //}
 
-           
 
-            ViewData["qKey"] = q;
-            ViewData["studenti"] = studenti;
+            //nema potrebe za ovim jer su dodani modeli
+            //ViewData["qKey"] = q;
+            //ViewData["studenti"] = studenti;
 
-            return View();
+            StudentPrikazVM m = new StudentPrikazVM();
+            m.studenti = studenti;
+            m.q = q;
+
+            return View(m);
         }
     }
 }
