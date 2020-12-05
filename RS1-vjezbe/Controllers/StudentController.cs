@@ -20,45 +20,61 @@ namespace RS1_vjezbe.Controllers
             db.Remove(tempStudent);
             db.SaveChanges();
 
-            return Redirect("/Student/ObrisiPoruka");
-        }
-        public IActionResult Snimi(string Ime, string Prezime, int OpcinaRodjenjaID, int OpcinaPrebivalistaID)
-        {
-            var student = new Student
-            {
-                Ime = Ime,
-                Prezime = Prezime,
-                OpcinaRodjenjaID = OpcinaRodjenjaID,
-                OpcinaPrebivalistaID = OpcinaPrebivalistaID
-            };
+            TempData["porukaInfo"] = "Uspješno ste obrisali studenta " + tempStudent.Ime;
 
+            return Redirect("/Student/Poruka");
+        }
+        public IActionResult Snimi(int StudentID, string Ime, string Prezime, int OpcinaRodjenjaID, int OpcinaPrebivalistaID)
+        {
             MojDbContext db = new MojDbContext();
 
-            db.Add(student);
+            Student student;
+
+            if(StudentID==0)
+            {
+                student = new Student();
+                db.Student.Add(student);
+                TempData["porukaInfo"] = "Uspješno ste dodali studenta " + Ime;
+            }
+            else
+            {
+                student = db.Student.Find(StudentID);
+                TempData["porukaInfo"] = "Uspješno ste editovali studenta " + student.Ime;
+
+            }
+
+
+            student.Ime = Ime;
+            student.Prezime = Prezime;
+            student.OpcinaRodjenjaID = OpcinaRodjenjaID;
+            student.OpcinaPrebivalistaID = OpcinaPrebivalistaID;
+            
+
             db.SaveChanges();
 
-            return Redirect("/Student/DodajPoruka?StudentID="+student.ID); 
+            return Redirect("/Student/Poruka"); 
         }
-        public IActionResult Dodaj()
+
+
+ 
+        
+        public IActionResult Uredi(int StudentID)
         {
             MojDbContext db = new MojDbContext();
             List<Opcina> opcine = db.Opcina.OrderBy(a => a.NazivOpcine).ToList();
+
             ViewData["opcine"] = opcine;
-            return View();
+            var tempStudent = StudentID==0? new Student(): db.Student.Find(StudentID);
+            ViewData["student"] = tempStudent;
+
+            return View("Uredi");
         }
 
-        public IActionResult DodajPoruka(int StudentID)
+        public IActionResult Poruka()
         {
-            MojDbContext db = new MojDbContext();
-            Student tempStudent = db.Student.Find(StudentID);
-            ViewData["imeStudenta"] = tempStudent.Ime;
-            return View();
+            return View("Poruka");
         }
         
-        public IActionResult ObrisiPoruka()
-        {
-            return View("ObrisiPoruka");
-        }
 
         public IActionResult Prikaz(string q)
         {

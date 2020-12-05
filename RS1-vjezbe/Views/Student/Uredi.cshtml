@@ -1,0 +1,58 @@
+﻿@using RS1_vjezbe.EntityModels
+@{ 
+    var opcine = (List<Opcina>)ViewData["opcine"];
+    var s = (Student)ViewData["student"];
+}
+
+<form action="/Student/Snimi">
+    <div >
+        <label>ID</label>
+        <input type="hidden" name="StudentID" value="@s.ID" />
+    </div>
+
+    <div>
+        <label>Ime</label>
+        <input name="Ime" value="@s.Ime" />
+    </div>
+
+    <div>
+        <label>Prezime</label>
+        <input name="Prezime" value="@s.Prezime" />
+    </div>
+
+    <div>
+        <label>OpcinaRodjenjaID</label>
+        <select name="OpcinaRodjenjaID">
+            @foreach (var item in opcine)
+            {
+                if (item.ID == s.OpcinaRodjenjaID)
+                {
+                    <option selected value="@item.ID">@item.NazivOpcine</option>
+                }
+                else
+                {
+                    <option value="@item.ID">@item.NazivOpcine</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>OpcinaPrebivalistaID</label>
+        <select name="OpcinaPrebivalistaID">
+            @foreach (var item in opcine)
+            {
+                if (item.ID == s.OpcinaPrebivalistaID)
+                {
+                    <option selected value="@item.ID">@item.NazivOpcine</option>
+                }
+                else
+                {
+                    <option value="@item.ID">@item.NazivOpcine</option>
+                }
+            }
+        </select>
+    </div>
+
+    <input type="submit" value="Snimi" />
+</form>
