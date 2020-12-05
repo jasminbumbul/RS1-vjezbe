@@ -1,0 +1,75 @@
+﻿@using RS1_vjezbe.EntityModels
+
+@{
+    ViewData["Title"] = "Prikaz";
+    var studenti = (List<Student>)ViewData["studenti"];
+    var q = ViewData["qKey"];
+}
+
+<h1>Prikaz</h1>
+
+<button type="button" onclick="window.location='/Student/Dodaj'" class="btn btn-primary">Dodaj</button>
+<a href="/Student/Dodaj" class="btn btn-primary">Dodaj</a>
+
+<form >
+    <input name="q" value="@q" />
+    <input type="submit" value="Trazi" />
+</form>
+
+
+
+<table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>BrojIndeksa</th>
+                <th>OpcinaPrebivalista</th>
+                <th>OpcinaRodjenja</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+
+        <tbody>
+    @foreach (var s in studenti)
+    {
+
+            <tr>
+                <td>@s.ID</td>
+                <td>@s.Ime</td>
+                <td>@s.Prezime</td>
+                <td>@s.BrojIndeksa</td>
+
+                <td>
+                    @if (@s.OpcinaPrebivalista != null)
+                    {
+                        @s.OpcinaPrebivalista.NazivOpcine
+                    }
+                    else
+                    {
+                        <span>Nema podatka</span>
+                    }
+                </td>
+
+                <td>
+                    @if (@s.OpcinaRodjenja!= null)
+                    {
+                        @s.OpcinaRodjenja.NazivOpcine
+                    }
+                     else
+                    {
+                        <span>Nema podatka</span>
+                    }
+                </td>
+
+                <td>
+                    <a href="/Student/Obrisi?StudentID=@s.ID">Obrisi</a>
+                </td>
+
+            </tr>
+    }
+        </tbody>
+
+</table>
