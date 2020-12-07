@@ -1,56 +1,67 @@
 ﻿@using RS1_vjezbe.EntityModels
+@using RS1_vjezbe.Helper
+
+@model StudentDodajVM
+
 @{ 
-    var opcine = (List<Opcina>)ViewData["opcine"];
-    var s = (Student)ViewData["student"];
+//var opcine = (List<Opcina>)ViewData["opcine"];
 }
 
-<form action="/Student/Snimi">
+<form  asp-action="Snimi" asp-controller="Student">
     <div >
-        <label>ID</label>
-        <input type="hidden" name="StudentID" value="@s.ID" />
+        <label hidden>ID</label>
+        @*<input type="hidden" name="StudentID" value="@Model.ID" />*@
+        <input hidden asp-for="ID" />
     </div>
 
     <div>
         <label>Ime</label>
-        <input name="Ime" value="@s.Ime" />
+        @*<input name="Ime" value="@Model.Ime" />*@
+        <input asp-for="Ime" />
     </div>
 
     <div>
         <label>Prezime</label>
-        <input name="Prezime" value="@s.Prezime" />
+        @*<input name="Prezime" value="@Model.Prezime" />*@
+        <input asp-for="Prezime" />
     </div>
 
     <div>
         <label>OpcinaRodjenjaID</label>
-        <select name="OpcinaRodjenjaID">
-            @foreach (var item in opcine)
+        <select asp-for="OpcinaRodjenjaID" asp-items="Model.Opcine">
+           
+            @*moguće otkloniti zbog asp-for i asp-items*@
+            @*@foreach (ComboBoxVM item in Model.Opcine)
             {
-                if (item.ID == s.OpcinaRodjenjaID)
+                if (item.ID == Model.OpcinaRodjenjaID)
                 {
-                    <option selected value="@item.ID">@item.NazivOpcine</option>
+                    <option selected value="@item.ID">@item.Naziv</option>
                 }
                 else
                 {
-                    <option value="@item.ID">@item.NazivOpcine</option>
+                    <option value="@item.ID">@item.Naziv</option>
+
                 }
-            }
+            }*@
         </select>
     </div>
 
     <div>
         <label>OpcinaPrebivalistaID</label>
-        <select name="OpcinaPrebivalistaID">
-            @foreach (var item in opcine)
+        <select asp-for="OpcinaPrebivalistaID" asp-items="Model.Opcine">
+
+            @*@foreach (ComboBoxVM item in Model.Opcine)
             {
-                if (item.ID == s.OpcinaPrebivalistaID)
+                if (item.ID == Model.OpcinaPrebivalistaID)
                 {
-                    <option selected value="@item.ID">@item.NazivOpcine</option>
+                    <option selected value="@item.ID">@item.Naziv</option>
                 }
                 else
                 {
-                    <option value="@item.ID">@item.NazivOpcine</option>
+                    <option value="@item.ID">@item.Naziv</option>
+
                 }
-            }
+            }*@
         </select>
     </div>
 
