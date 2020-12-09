@@ -1,0 +1,36 @@
+﻿@using RS1_vjezbe.EntityModels
+@using RS1_vjezbe.Models
+
+@model List<StudentDetaljiVM>
+
+@{
+    ViewData["Title"] = "Prikaz";
+    //var studenti = (List<Student>)ViewData["studenti"];
+    //var q = ViewData["qKey"];
+    Layout = null;
+
+}
+
+<table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Naziv predmeta</th>
+                <th>Ocjena</th>
+                <th>Datum</th>
+            </tr>
+        </thead>
+
+        <tbody>
+    @foreach (StudentDetaljiVM s in Model)
+    {
+
+            <tr>
+                <td>@s.NazivPredmeta</td>
+                <td>@s.BrojcanaOcjena</td>
+                <td>@s.Datum.ToString("dd.MM.yyyy")</td>
+            </tr>
+    }
+        </tbody>
+
+</table>

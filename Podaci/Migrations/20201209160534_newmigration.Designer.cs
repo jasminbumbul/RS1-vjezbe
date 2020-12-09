@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RS1_vjezbe.EF;
 
-namespace RS1_vjezbe.Migrations
+namespace Podaci.Migrations
 {
     [DbContext(typeof(MojDbContext))]
-    [Migration("20201205151953_inicijalnaDB")]
-    partial class inicijalnaDB
+    [Migration("20201209160534_newmigration")]
+    partial class newmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,49 @@ namespace RS1_vjezbe.Migrations
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Podaci.EntityModels.Ocjene", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OcjenaBrojcano")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PredmetID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PredmetID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("Ocjena");
+                });
+
+            modelBuilder.Entity("Podaci.EntityModels.Predmet", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Predmet");
+                });
 
             modelBuilder.Entity("RS1_vjezbe.EntityModels.Opcina", b =>
                 {
@@ -65,6 +108,21 @@ namespace RS1_vjezbe.Migrations
                     b.HasIndex("OpcinaRodjenjaID");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("Podaci.EntityModels.Ocjene", b =>
+                {
+                    b.HasOne("Podaci.EntityModels.Predmet", "Predmet")
+                        .WithMany()
+                        .HasForeignKey("PredmetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RS1_vjezbe.EntityModels.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RS1_vjezbe.EntityModels.Student", b =>

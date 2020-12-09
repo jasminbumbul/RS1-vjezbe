@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Podaci.EntityModels;
 using RS1_vjezbe.EntityModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace RS1_vjezbe.EF
     {
         public DbSet<Opcina> Opcina { get; set; }
         public DbSet<Student> Student { get; set; }
+        public DbSet<Ocjene> Ocjena { get; set; }
+        public DbSet<Predmet> Predmet { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

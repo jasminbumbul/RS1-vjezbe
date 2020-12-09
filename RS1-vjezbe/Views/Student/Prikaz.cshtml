@@ -71,6 +71,7 @@
                 <td>
                     <a href="/Student/Uredi?StudentID=@s.ID">Uredi</a>
                     <a href="/Student/Obrisi?StudentID=@s.ID">Obrisi</a>
+                    <button onclick="PrikaziDetalje(@s.ID)">Detalji</button>
                 </td>
 
             </tr>
@@ -78,3 +79,28 @@
         </tbody>
 
 </table>
+
+<div id="ajaxPrikaz" style="border: 1px solid red">
+    This is a simple test
+</div>
+
+<script>
+    function PrikaziDetalje(StudentID) {
+
+        var url = "/Student/Detalji?StudentID=" + StudentID;
+
+        var zahtjev = new XMLHttpRequest();
+        zahtjev.onload = function () {
+            if (zahtjev.status === 200) {
+                document.getElementById("ajaxPrikaz").innerHTML = zahtjev.responseText;
+            }
+            else {
+
+            }
+        };
+
+        zahtjev.open("get", url, true);
+        zahtjev.send();
+
+    }
+</script>
