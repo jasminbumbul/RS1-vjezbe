@@ -10,7 +10,6 @@ using RS1_vjezbe.EntityModels;
 using RS1_vjezbe.Helper;
 using RS1_vjezbe.Models;
 
-//test
 
 namespace RS1_vjezbe.Controllers
 {
