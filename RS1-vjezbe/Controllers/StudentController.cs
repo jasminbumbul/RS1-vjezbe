@@ -67,7 +67,7 @@ namespace RS1_vjezbe.Controllers
             List<SelectListItem> opcine = db.Opcina.OrderBy(a => a.NazivOpcine).Select(a=> new SelectListItem { Value=a.ID.ToString(), Text=a.NazivOpcine }).ToList();
 
             //ViewData["opcine"] = opcine;
-            StudentDodajVM tempStudent = StudentID == 0 ? new StudentDodajVM() : db.Student.Where(w => w.ID == StudentID)
+            StudentDodajVM tempStudent = StudentID == 0 ? new StudentDodajVM() {Opcine=opcine } : db.Student.Where(w => w.ID == StudentID)
                 .Select(a => new StudentDodajVM
                 {
                     ID = a.ID,

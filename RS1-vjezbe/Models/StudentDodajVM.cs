@@ -13,7 +13,7 @@ namespace RS1_vjezbe.Models
         public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public int OpcinaRodjenjaID { get; set; }
-        public int OpcinaPrebivalistaID { get; set; }
+        public int? OpcinaRodjenjaID { get; set; }
+        public int? OpcinaPrebivalistaID { get; set; }
     }
 }
