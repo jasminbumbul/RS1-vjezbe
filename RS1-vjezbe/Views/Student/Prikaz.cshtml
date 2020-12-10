@@ -72,6 +72,7 @@
                     <a href="/Student/Uredi?StudentID=@s.ID">Uredi</a>
                     <a href="/Student/Obrisi?StudentID=@s.ID">Obrisi</a>
                     <button onclick="PrikaziDetalje(@s.ID)">Detalji</button>
+                    <button onclick="PrisustvoNaNastavi(@s.ID)">Prisustvo na nastavi</button>
                 </td>
 
             </tr>
@@ -85,9 +86,57 @@
 </div>
 
 <script>
+
+    function SnimiOcjenu() {
+        var form = $("#OcjenaForma");
+        var url = "/StudentOcjene/Snimi";
+
+        $.ajax({
+            type:"POST",
+            url: url,
+            data: form.serialize(),
+            success: function (odg) {
+                $("#ajaxPrikaz").html(odg);
+            }
+        });
+
+        alert("Uspjesno snimljeno");
+    }
+
+    function UrediOcjenu(OcjenaID) {
+        var url = "/StudentOcjene/Uredi?OcjenaID=" + OcjenaID;
+        $.get(url, function (odg) {
+            $(ajaxPrikaz).html(odg);
+        });
+    }
+
+    function PrisustvoNaNastavi(StudentID)
+    {
+        var url = "/Student/PrisustvoNaNastavi?StudentID=" + StudentID;
+
+        //način preko jquerryja
+        $.get(url, function (odg) {
+            $(ajaxPrikaz).html(odg);
+        });
+
+        //način preko xmlhttp requesta
+        //var zahtjev = new XMLHttpRequest;
+        //zahtjev.onload = function () {
+        //    if (zahtjev.status === 200) {
+        //        document.getElementById("ajaxPrikaz").innerHTML = zahtjev.responseText;
+        //    }
+        //    else {
+
+        //    }
+        //};
+
+        //zahtjev.open("get", url, true);
+        //zahtjev.send();
+    }
+
     function PrikaziDetalje(StudentID) {
 
-        var url = "/Student/Detalji?StudentID=" + StudentID;
+        var url = "/StudentOcjene/Prikaz?StudentID=" + StudentID;
 
         var zahtjev = new XMLHttpRequest();
         zahtjev.onload = function () {

@@ -1,0 +1,23 @@
+﻿@using RS1_vjezbe.EntityModels
+@using RS1_vjezbe.Helper
+
+@model StudentOcjeneUrediVM
+
+<form id="OcjenaForma" >
+
+    <div>
+        <input type="hidden" asp-for="ID" />
+    </div>
+    
+    <div>
+        <label>Ocjena</label>
+        <input asp-for="Ocjena" />
+    </div>
+
+    <div>
+        <label>Datum</label>
+        <input asp-for="Datum" type="datetime-local"/>
+    </div>
+
+    <input type="button" value="Uredi" class="btn btn-danger" onclick="SnimiOcjenu()"/>
+</form>

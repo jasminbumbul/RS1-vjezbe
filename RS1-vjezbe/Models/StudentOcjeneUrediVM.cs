@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace RS1_vjezbe.Models
 {
-    public class StudentDetaljiVM
+    public class StudentOcjeneUrediVM
     {
-        public string NazivPredmeta { get; set; }
-        public int BrojcanaOcjena { get; set; }
+        public int ID { get; set; }
+        public int Ocjena { get; set; }
         public DateTime Datum { get; set; }
     }
 }

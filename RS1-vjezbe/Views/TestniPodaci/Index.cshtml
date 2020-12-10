@@ -1,0 +1,20 @@
+﻿@using RS1_vjezbe.EF
+
+
+@{ ViewData["Title"] = "Index";
+    MojDbContext db = new MojDbContext();
+}
+
+<p>Uspješno generisani podaci</p>
+Studenti @db.Student.Count()
+<br />
+Predmeti @db.Predmet.Count()
+<br />
+Ocjene @db.Ocjena.Count()
+<br />
+Prisustvo na nastavi
+@db.PrisustvoNaNastavi.Count()
+<br />
+
+<a href="/Home/Index">Go back</a>
+
