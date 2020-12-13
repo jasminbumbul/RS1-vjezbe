@@ -14,6 +14,8 @@ namespace Podaci.EntityModels
         public Student Student { get; set; }
         public int PredmetID { get; set; }
         public Predmet Predmet { get; set; }
+        public bool Prisutan { get; set; }
+        public string Komentar { get; set; }
 
     }
 }

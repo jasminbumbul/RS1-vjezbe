@@ -15,26 +15,7 @@ namespace RS1_vjezbe.Controllers
 {
     public class StudentController : Controller
     {
-        public IActionResult PrisustvoNaNastavi(int StudentID)
-        {
-            MojDbContext db = new MojDbContext();
-            var temp = new StudentPrisustvoNaNastaviVM();
-
-            Student s = db.Student.Find(StudentID);
-            temp.ImeStudenta = s.Ime + " " +s.Prezime;
-
-            temp.Zapisi = db.PrisustvoNaNastavi.Where(p => p.StudentID == StudentID)
-                .Select(p => new StudentPrisustvoNaNastaviVM.Zapis
-                {
-                    Datum=p.Datum,
-                    Predmet=p.Predmet.Naziv
-                }).ToList();
-
-            return View(temp);
-        }
-
-     
-
+        
         public IActionResult Obrisi(int StudentID)
         {
             MojDbContext db = new MojDbContext();

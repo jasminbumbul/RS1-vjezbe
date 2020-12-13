@@ -1,0 +1,26 @@
+﻿@model StudentPrisustvoNaNastaviUrediVM
+
+    <form id="PrisustvoForma">
+        <div>
+            <input type="hidden" asp-for="ID" />
+        </div>
+
+        <div>
+            <label>Datum</label>
+            <input asp-for="Datum"  />
+        </div>
+
+        <div>
+
+            <label>Prisutan</label>
+            <input asp-for="Prisustvo"  />
+        </div>
+
+        <div>
+
+            <label>Komentar</label>
+            <input asp-for="Komentar" />
+        </div>
+
+        <button class="btn btn-danger" onclick="SnimiPrisustvoNaNastavi()">Snimi</button>
+    </form>

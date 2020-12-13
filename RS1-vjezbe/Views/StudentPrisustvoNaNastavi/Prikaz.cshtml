@@ -1,0 +1,41 @@
+﻿
+@model StudentPrisustvoNaNastaviPrikazVM 
+@{
+    Layout = null;
+}
+
+<h3>Ime studenta : @Model.ImeStudenta</h3>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Predmet</th>
+            <th>Datum</th>
+            <th>Prisutan</th>
+            <th>Komentar</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in Model.Zapisi)
+        {
+            <tr>
+                <td>@x.Predmet</td>
+                <td>@x.Datum</td>
+                @if(!@x.Prisustvo)
+                {
+                    <td>NE</td>
+                }
+                else{
+                    <td>DA</td>
+                }
+                <td>@x.Komentar</td>
+                <td>
+                    <button onclick="UrediPrisustvoNaNastavi(@x.ID)" class="btn btn-danger"> Uredi</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
