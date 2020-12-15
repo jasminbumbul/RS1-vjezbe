@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RS1_vjezbe.EF;
 
 namespace Podaci.Migrations
 {
     [DbContext(typeof(MojDbContext))]
-    partial class MojDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201215162334_migracijaKorisnickiNalog")]
+    partial class migracijaKorisnickiNalog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

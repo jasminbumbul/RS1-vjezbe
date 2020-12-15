@@ -20,6 +20,10 @@ namespace RS1_vjezbe.Controllers
 
         public IActionResult Index()
         {
+            if(AutentifikacijaController.logiraniKorisnik==null)
+            {
+                return Redirect("/Autentifikacija/Index");
+            }
             return View();
         }
 

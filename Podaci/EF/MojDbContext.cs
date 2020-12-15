@@ -15,6 +15,7 @@ namespace RS1_vjezbe.EF
         public DbSet<Ocjene> Ocjena { get; set; }
         public DbSet<Predmet> Predmet { get; set; }
         public DbSet<PrisustvoNaNastavi> PrisustvoNaNastavi { get; set; }
+        public DbSet<KorisnickiNalog> KorisnickiNalog { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

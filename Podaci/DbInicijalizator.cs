@@ -3,6 +3,7 @@ using RS1_vjezbe.EF;
 using RS1_vjezbe.EntityModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Podaci
@@ -30,6 +31,20 @@ namespace Podaci
         public static void Generisi()
         {
             MojDbContext db = new MojDbContext();
+
+
+            var k = new KorisnickiNalog
+            {
+                KorisnickoIme = "admin",
+                Lozinka = "admin"
+            };
+            db.KorisnickiNalog.Add(k);
+            db.SaveChanges();
+         
+            if(db.Student.Any())
+            {
+                return;
+            }
 
             var Opstine = new List<Opcina>();
             var Predmeti = new List<Predmet>();

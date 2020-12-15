@@ -1,0 +1,33 @@
+﻿@model AutentifikacijaIndexVM
+
+@{
+string errorGreska=(string)TempData["porukaGreska"];
+}
+
+<div>
+    <h1>Login</h1>
+
+    <form asp-action="login">
+            <label>Username:</label>
+        <div>
+            <input type="text" asp-for="KorisnickoIme"  />
+            <span asp-validation-for="KorisnickoIme" class="text-danger"></span>
+        </div>
+
+            <label>Password:</label>
+        <div>
+            <input type="text" asp-for="Lozinka" />
+            <span asp-validation-for="Lozinka" class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Login" class="btn btn-info"/>
+
+    </form>
+
+    @if(errorGreska!=null)
+    {
+    <div class="alert alert-danger">
+        @errorGreska
+    </div>
+    }
+</div>
