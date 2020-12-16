@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RS1_vjezbe.Models;
+using RS1_vjezbe.Helper;
 
 namespace RS1_vjezbe.Controllers
 {
@@ -20,7 +21,7 @@ namespace RS1_vjezbe.Controllers
 
         public IActionResult Index()
         {
-            if(AutentifikacijaController.logiraniKorisnik==null)
+            if(HttpContext.GetLogiraniKorisnik()==null)
             {
                 return Redirect("/Autentifikacija/Index");
             }

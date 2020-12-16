@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Podaci.EntityModels;
 using RS1_vjezbe.EF;
 using RS1_vjezbe.Helper;
@@ -13,7 +14,7 @@ namespace RS1_vjezbe.Controllers
     public class AutentifikacijaController : Controller
     {
         MojDbContext db = new MojDbContext();
-        public static KorisnickiNalog logiraniKorisnik = null;
+       
         public IActionResult Index()
         {
             return View();
@@ -28,16 +29,15 @@ namespace RS1_vjezbe.Controllers
                 TempData["porukaGreska"] = "Neispravan username/password";
                 return Redirect("/Autentifikacija/Index");
             }
-            this.HttpContext.Session.Set("aaa", nalog);
-            logiraniKorisnik = nalog;
 
+            HttpContext.SetLogiraniKorisnik(nalog);
             return Redirect("/");
         }
 
         public IActionResult Logout()
         {
-            logiraniKorisnik = null;
-            return Redirect("/");
+            HttpContext.SetLogiraniKorisnik(null);
+            return Redirect("/Home");
         }
     }
 }

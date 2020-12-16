@@ -18,6 +18,10 @@ namespace RS1_vjezbe.Controllers
         
         public IActionResult Obrisi(int StudentID)
         {
+            if (HttpContext.GetLogiraniKorisnik() == null)
+            {
+                return Redirect("/Autentifikacija/Index");
+            }
             MojDbContext db = new MojDbContext();
 
             Student tempStudent = db.Student.Find(StudentID);
@@ -31,6 +35,10 @@ namespace RS1_vjezbe.Controllers
         }
         public IActionResult Snimi(StudentDodajVM x)
         {
+            if (HttpContext.GetLogiraniKorisnik() == null)
+            {
+                return Redirect("/Autentifikacija/Index");
+            }
             MojDbContext db = new MojDbContext();
 
             Student student;
@@ -65,6 +73,10 @@ namespace RS1_vjezbe.Controllers
         
         public IActionResult Uredi(int StudentID)
         {
+            if (HttpContext.GetLogiraniKorisnik() == null)
+            {
+                return Redirect("/Autentifikacija/Index");
+            }
             MojDbContext db = new MojDbContext();
             List<SelectListItem> opcine = db.Opcina.OrderBy(a => a.NazivOpcine).Select(a=> new SelectListItem { Value=a.ID.ToString(), Text=a.NazivOpcine }).ToList();
 
@@ -95,6 +107,11 @@ namespace RS1_vjezbe.Controllers
 
         public IActionResult Prikaz(string q)
         {
+            if (HttpContext.GetLogiraniKorisnik() == null)
+            {
+                return Redirect("/Autentifikacija/Index");
+            }
+
             MojDbContext db = new MojDbContext();
 
             //kao neki join  
